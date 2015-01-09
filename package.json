@@ -1,0 +1,22 @@
+{
+  "name": "gulp-html",
+  "version": "0.0.1",
+  "description": "gulp plugin for html validation, using vnu.jar for the actual validation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/watilde/gulp-html.git"
+  },
+  "keywords": [
+    "gulpplugin"
+  ],
+  "author": "Daijiro Wachi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/watilde/gulp-html/issues"
+  },
+  "homepage": "https://github.com/watilde/gulp-html"
+}
