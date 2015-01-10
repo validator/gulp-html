@@ -1,6 +1,6 @@
 {
   "name": "gulp-html",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "gulp plugin for html validation, using vnu.jar",
   "main": "index.js",
   "scripts": {
