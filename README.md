@@ -1,6 +1,8 @@
 # gulp-html
-gulp plugin for html validation
+gulp plugin for html validation, using the [vnu.jar](https://validator.github.io/)
 
+## Install
+Run `npm install gulp-html`.
 
 ## Usage
 
@@ -14,3 +16,32 @@ gulp.task('html', function() {
   .pipe(gulp.dest('dist/'));
 });
 ```
+
+## Options
+The options object supports the same options as the standard The Nu Markup Checker.
+See also: http://validator.github.io/validator/#options
+
+### errors-only
+Type: Boolean
+Default: false
+
+### format
+Type: String
+Default: gnu
+
+### html
+Type: Boolean
+Default: false
+
+### no-stream
+Type: Boolean
+Default: false
+
+### verbose
+Type: Boolean
+Default: false
+
+## License
+Copyright 2015 Daijiro Wachi
+
+This software is released under the MIT License. See [LICENSE](/LICENSE).
