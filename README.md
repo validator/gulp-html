@@ -1,4 +1,5 @@
-# gulp-html
+# gulp-html [![Build Status](https://travis-ci.org/watilde/gulp-html.svg)](https://travis-ci.org/watilde/gulp-html) [![NPM Version](http://img.shields.io/npm/v/gulp-html.svg)](https://www.npmjs.org/package/gulp-html) [![Dependency Status](https://gemnasium.com/watilde/gulp-html.svg)](https://gemnasium.com/watilde/gulp-html)
+
 gulp plugin for html validation, using the [vnu.jar](https://validator.github.io/)
 
 ## Install
