@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/watilde/gulp-html/issues"
   },
-  "homepage": "https://github.com/watilde/gulp-html"
+  "homepage": "https://github.com/watilde/gulp-html",
+  "devDependencies": {
+    "gulp": "^3.8.10"
+  },
+  "dependencies": {
+    "gulp-util": "^3.0.2",
+    "through2": "^0.6.3"
+  }
 }
