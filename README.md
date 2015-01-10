@@ -19,27 +19,33 @@ gulp.task('html', function() {
 
 ## Options
 The options object supports the same options as the standard The Nu Markup Checker.
+
 See also: http://validator.github.io/validator/#options
 
 ### errors-only
-Type: Boolean
-Default: false
+Type: `Boolean`
+
+Default: `false`
 
 ### format
-Type: String
-Default: gnu
+Type: `String`
+
+Default: `"gnu"`
 
 ### html
-Type: Boolean
-Default: false
+Type: `Boolean`
+
+Default: `false`
 
 ### no-stream
-Type: Boolean
-Default: false
+Type: `Boolean`
+
+Default: `false`
 
 ### verbose
-Type: Boolean
-Default: false
+Type: `Boolean`
+
+Default: `false`
 
 ## License
 Copyright 2015 Daijiro Wachi
