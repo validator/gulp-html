@@ -3,7 +3,7 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var merge = require('merge');
 var PluginError = gutil.PluginError;
-var vnu = 'java -jar vnu.jar ';
+var vnu = 'java -jar ./vnu/vnu.jar ';
 
 module.exports = function(opt) {
   var stream  = through.obj(function(file, enc, cb) {
