@@ -11,7 +11,7 @@ module.exports = function(opt) {
     if (file.isStream()) {
       return cb(new PluginError('gulp-html', 'Streaming not supported'));
     }
-    var str = file.contents.toString('utf8');
+    var file = file.history;
     var options = merge({
       'errors-only': false,
       'format': 'gnu',
@@ -20,6 +20,8 @@ module.exports = function(opt) {
       'verbose': false,
     }, opt);
 
+    vnu += file;
+
     // Set options
     Object.keys(options).forEach(function (key) {
       var val = options[key];
@@ -27,7 +29,7 @@ module.exports = function(opt) {
       if (val === true) vnu += '--' + key + ' ';
     });
 
-    exec("echo '" + str + "' | " + vnu + '-', function (err, stdout, stderr) {
+    exec(vnu, function (err, stdout, stderr) {
       if (err === null) return cb(null, file);
       return cb(new PluginError('gulp-html', stderr));
     });
