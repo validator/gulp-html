@@ -27,4 +27,4 @@ gulp.task('ng', function () {
   });
 });
 
-gulp.task('test', ['ok']);
+gulp.task('test', ['ok', 'ng']);

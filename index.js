@@ -3,9 +3,9 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var merge = require('merge');
 var PluginError = gutil.PluginError;
-var vnu = 'java -jar ' + __dirname + '/vnu/vnu.jar ';
 
 module.exports = function(opt) {
+  var vnu = 'java -jar ' + __dirname + '/vnu/vnu.jar ';
   var stream  = through.obj(function(file, enc, cb) {
     if (file.isNull()) return cb(null, file);
     if (file.isStream()) {
