@@ -11,7 +11,7 @@ module.exports = function(opt) {
     if (file.isStream()) {
       return cb(new PluginError('gulp-html', 'Streaming not supported'));
     }
-    var file = file.history;
+    var filename = file.history;
     var options = merge({
       'errors-only': false,
       'format': 'gnu',
@@ -20,7 +20,7 @@ module.exports = function(opt) {
       'verbose': false,
     }, opt);
 
-    vnu += file;
+    vnu += filename;
 
     // Set options
     Object.keys(options).forEach(function (key) {
