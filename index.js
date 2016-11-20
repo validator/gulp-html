@@ -3,9 +3,10 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var merge = require('merge');
 var PluginError = gutil.PluginError;
+var jar = require('vnu-jar');
 
 module.exports = function(opt) {
-  var vnu = 'java -jar ' + __dirname + '/vnu/vnu.jar ';
+  var vnu = 'java -jar ' + jar + ' ';
 
   var options = merge({
     'errors-only': false,
