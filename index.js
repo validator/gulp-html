@@ -5,6 +5,7 @@ var merge = require('merge');
 var PluginError = gutil.PluginError;
 const chalk = require('chalk');
 var winston = require('winston');
+var jar = require('vnu-jar');
 
 var vnuErrorLevels = {
     levels: {
@@ -50,14 +51,14 @@ const logger = new (winston.Logger)({
 });
 
 module.exports = function(opt) {
-    var vnu = 'java -jar ' + __dirname + '/vnu/vnu.jar ';
+    var vnu = 'java -jar ' + jar + ' ';
 
     var options = merge({
         'errors-only': false,
         'format': 'gnu',
         'html': false,
         'no-stream': false,
-        'verbose': false,
+        'verbose': false
     }, opt);
 
     // Set options
