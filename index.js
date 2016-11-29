@@ -12,7 +12,7 @@ var vnuErrorLevels = {
         'success': 0,
         'error': 1,
         'info': 2,
-        'non-document-error': 3,
+        'non-document-error': 3
     },
     colors: {
         'success': 'green',
@@ -72,7 +72,6 @@ module.exports = function(opt) {
         var parsedMessages = JSON.parse(messages).messages;
 
         if(error === null && !parsedMessages.length) {
-
             logger.log('success', 'Document is valid: ', {path: path});
         }
         else {
@@ -89,7 +88,12 @@ module.exports = function(opt) {
         }
 
         exec(vnu + file.history, function (err, stdout, stderr) {
-            return cb(handleError(err, stderr, file.history[0]));
+            if(options.format === 'json') {
+                return cb(handleError(err, stderr, file.history[0]));
+            }
+
+            if (err === null) return cb(null, file);
+            return cb(new PluginError('gulp-html', stderr));
         });
     });
 
