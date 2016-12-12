@@ -3,9 +3,10 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var merge = require('merge');
 var PluginError = gutil.PluginError;
+var vnuJar = require('vnu-jar');
 
 module.exports = function(opt) {
-  var vnu = 'java -jar ' + __dirname + '/vnu/vnu.jar ';
+  var vnuCmd = 'java -jar ' + vnuJar + ' ';
 
   var options = merge({
     'errors-only': false,
@@ -18,8 +19,8 @@ module.exports = function(opt) {
   // Set options
   Object.keys(options).forEach(function (key) {
     var val = options[key];
-    if (key === 'format' && val !== 'gnu') vnu += '--format ' + val + ' ';
-    if (val === true) vnu += '--' + key + ' ';
+    if (key === 'format' && val !== 'gnu') vnuCmd += '--format ' + val + ' ';
+    if (val === true) vnuCmd += '--' + key + ' ';
   });
 
   var stream  = through.obj(function(file, enc, cb) {
@@ -28,7 +29,7 @@ module.exports = function(opt) {
       return cb(new PluginError('gulp-html', 'Streaming not supported'));
     }
 
-    exec(vnu + file.history, function (err, stdout, stderr) {
+    exec(vnuCmd + file.history, function (err, stdout, stderr) {
       if (err === null) return cb(null, file);
       return cb(new PluginError('gulp-html', stderr));
     });
