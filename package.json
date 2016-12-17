@@ -26,7 +26,7 @@
   "dependencies": {
     "gulp-util": "^3.0.2",
     "merge": "^1.2.0",
-    "through2": "^1.1.1",
-    "vnu-jar": "^16.6.29"
+    "through2": "^2.0.3",
+    "vnu-jar": "^16.11.19"
   }
 }
