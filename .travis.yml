@@ -1,7 +1,6 @@
-script:
-  - "npm test"
-
+dist: trusty
 language: node_js
-
 node_js:
-  - 0.10
+  - 4
+  - 6
+  - node
