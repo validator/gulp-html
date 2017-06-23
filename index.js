@@ -6,7 +6,7 @@ var PluginError = gutil.PluginError;
 var vnuJar = require('vnu-jar');
 
 module.exports = function(opt) {
-  var vnuCmd = 'java -Xss512k -jar ' + vnuJar + ' ';
+  var vnuCmd = 'java -Xss1024k -jar ' + vnuJar + ' ';
 
   var options = merge({
     'errors-only': false,
@@ -31,7 +31,7 @@ module.exports = function(opt) {
 
     exec(vnuCmd + file.history, function (err, stdout, stderr) {
       if (err === null) return cb(null, file);
-      return cb(new PluginError('gulp-html', stderr));
+      return cb(new PluginError('gulp-html', stderr || stdout));
     });
   });
 
