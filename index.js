@@ -1,39 +1,37 @@
-var exec = require('child_process').exec;
-var through = require('through2');
-var gutil = require('gulp-util');
-var merge = require('merge');
-var PluginError = gutil.PluginError;
-var vnuJar = require('vnu-jar');
+const exec = require("child_process").exec,
+      vnuJar = require("vnu-jar");
 
-module.exports = function(opt) {
-  var vnuCmd = 'java -Xss1024k -jar ' + vnuJar + ' ';
-
-  var options = merge({
-    'errors-only': false,
-    'format': 'gnu',
-    'html': false,
-    'no-stream': false,
-    'verbose': false,
+module.exports = async function(filepath, opt) {
+  const options = Object.assign({
+    "errors-only": false,
+    html: false,
+    "no-stream": false,
+    verbose: false,
   }, opt);
+  let vnuCmd = `java -Xss1024k -jar ${vnuJar} `;
 
   // Set options
-  Object.keys(options).forEach(function (key) {
-    var val = options[key];
-    if (key === 'format' && val !== 'gnu') vnuCmd += '--format ' + val + ' ';
-    if (val === true) vnuCmd += '--' + key + ' ';
-  });
-
-  var stream  = through.obj(function(file, enc, cb) {
-    if (file.isNull()) return cb(null, file);
-    if (file.isStream()) {
-      return cb(new PluginError('gulp-html', 'Streaming not supported'));
+  for (const [ key, val ] of Object.entries(options)) {
+    if (key === "format") {
+      throw new Error("Error: format option is forbidden in this module.");
     }
+    if (val === true) {
+      vnuCmd += `--${key} `;
+    }
+  }
 
-    exec(vnuCmd + file.history, function (err, stdout, stderr) {
-      if (err === null) return cb(null, file);
-      return cb(new PluginError('gulp-html', stderr || stdout));
+  vnuCmd += `--format json ${filepath}`;
+
+  return new Promise((resolve, reject) => {
+    exec(vnuCmd, (err, stdout, stderr) => {
+      // Don't reject when Nu HTML Checker return 1 as return code (It returns 1 when HTML is not valid)
+      if (err && !err.message.startsWith("Command failed:")) {
+        return reject(err);
+      }
+
+      console.log(stdout);
+
+      return resolve(JSON.parse(stderr).messages);
     });
   });
-
-  return stream;
 };
