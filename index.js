@@ -28,6 +28,8 @@ module.exports = async function(filepath, opt) {
         return reject(err);
       }
 
+      console.log(stdout);
+
       return resolve(JSON.parse(stderr).messages);
     });
   });
