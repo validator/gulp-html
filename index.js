@@ -33,11 +33,11 @@ module.exports = function(opt) {
     }
 
     exec(vnuCmd + file.history, (err, stdout, stderr) => {
-      if (err === null) {
-        return cb(null, file);
+      if (err) {
+        return cb(new PluginError("gulp-html", stderr || stdout));
       }
 
-      return cb(new PluginError("gulp-html", stderr || stdout));
+      return cb(null, file);
     });
   });
 
