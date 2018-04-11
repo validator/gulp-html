@@ -16,16 +16,14 @@ module.exports = function(opt) {
   let vnuCmd = "java -Xss1024k -jar " + vnuJar + " ";
 
   // Set options
-  Object.keys(options).forEach((key) => {
-    const val = options[key];
-
+  for (const [ key, val ] of Object.entries(options)) {
     if (key === "format" && val !== "gnu") {
       vnuCmd += "--format " + val + " ";
     }
     if (val === true) {
       vnuCmd += "--" + key + " ";
     }
-  });
+  }
 
   const stream = through.obj((file, enc, cb) => {
     if (file.isNull()) {
