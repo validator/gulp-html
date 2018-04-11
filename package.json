@@ -22,8 +22,7 @@
   "homepage": "https://github.com/watilde/gulp-html",
   "devDependencies": {
     "@phanect/eslint-config-phanective": "latest",
-    "eslint": "latest",
-    "gulp": "^3.8.10"
+    "eslint": "latest"
   },
   "dependencies": {
     "gulp-util": "^3.0.2",
