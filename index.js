@@ -28,7 +28,7 @@ module.exports = async function(filepath, opt) {
         return reject(err);
       }
 
-      return resolve(filepath);
+      return resolve(JSON.parse(stderr).messages);
     });
   });
 };
