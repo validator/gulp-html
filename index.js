@@ -24,7 +24,8 @@ module.exports = async function(filepath, opt) {
 
   return new Promise((resolve, reject) => {
     exec(vnuCmd, (err, stdout, stderr) => {
-      if (err) {
+      // Don't reject when Nu HTML Checker return 1 as return code (It returns 1 when HTML is not valid)
+      if (err && !err.message.startsWith("Command failed:")) {
         return reject(err);
       }
 
