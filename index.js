@@ -1,12 +1,11 @@
 const exec = require("child_process").exec,
       through = require("through2"),
       gutil = require("gulp-util"),
-      merge = require("merge"),
       PluginError = gutil.PluginError,
       vnuJar = require("vnu-jar");
 
 module.exports = function(opt) {
-  const options = merge({
+  const options = Object.assign({
     "errors-only": false,
     format: "gnu",
     html: false,
