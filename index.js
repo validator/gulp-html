@@ -1,10 +1,7 @@
 const exec = require("child_process").exec,
-      through = require("through2"),
-      gutil = require("gulp-util"),
-      PluginError = gutil.PluginError,
       vnuJar = require("vnu-jar");
 
-module.exports = function(opt) {
+module.exports = async function(filepath, opt) {
   const options = Object.assign({
     "errors-only": false,
     format: "gnu",
@@ -24,22 +21,13 @@ module.exports = function(opt) {
     }
   }
 
-  const stream = through.obj((file, enc, cb) => {
-    if (file.isNull()) {
-      return cb(null, file);
-    }
-    if (file.isStream()) {
-      return cb(new PluginError("gulp-html", "Streaming not supported"));
-    }
-
-    exec(vnuCmd + file.history, (err, stdout, stderr) => {
+  return new Promise((resolve, reject) => {
+    exec(vnuCmd + filepath, (err, stdout, stderr) => {
       if (err) {
-        return cb(new PluginError("gulp-html", stderr || stdout));
+        return reject(err);
       }
 
-      return cb(null, file);
+      return resolve(filepath);
     });
   });
-
-  return stream;
 };
