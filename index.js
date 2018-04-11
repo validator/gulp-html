@@ -9,20 +9,22 @@ module.exports = async function(filepath, opt) {
     "no-stream": false,
     verbose: false,
   }, opt);
-  let vnuCmd = "java -Xss1024k -jar " + vnuJar + " ";
+  let vnuCmd = `java -Xss1024k -jar ${vnuJar} `;
 
   // Set options
   for (const [ key, val ] of Object.entries(options)) {
     if (key === "format" && val !== "gnu") {
-      vnuCmd += "--format " + val + " ";
+      vnuCmd += `--format ${val} `;
     }
     if (val === true) {
-      vnuCmd += "--" + key + " ";
+      vnuCmd += `--${key} `;
     }
   }
 
+  vnuCmd += filepath;
+
   return new Promise((resolve, reject) => {
-    exec(vnuCmd + filepath, (err, stdout, stderr) => {
+    exec(vnuCmd, (err, stdout, stderr) => {
       if (err) {
         return reject(err);
       }
