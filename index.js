@@ -1,37 +1,46 @@
-var exec = require('child_process').exec;
-var through = require('through2');
-var gutil = require('gulp-util');
-var merge = require('merge');
-var PluginError = gutil.PluginError;
-var vnuJar = require('vnu-jar');
+const exec = require("child_process").exec,
+      through = require("through2"),
+      gutil = require("gulp-util"),
+      merge = require("merge"),
+      PluginError = gutil.PluginError,
+      vnuJar = require("vnu-jar");
 
 module.exports = function(opt) {
-  var vnuCmd = 'java -Xss1024k -jar ' + vnuJar + ' ';
-
-  var options = merge({
-    'errors-only': false,
-    'format': 'gnu',
-    'html': false,
-    'no-stream': false,
-    'verbose': false,
+  const options = merge({
+    "errors-only": false,
+    format: "gnu",
+    html: false,
+    "no-stream": false,
+    verbose: false,
   }, opt);
+  let vnuCmd = "java -Xss1024k -jar " + vnuJar + " ";
 
   // Set options
-  Object.keys(options).forEach(function (key) {
-    var val = options[key];
-    if (key === 'format' && val !== 'gnu') vnuCmd += '--format ' + val + ' ';
-    if (val === true) vnuCmd += '--' + key + ' ';
+  Object.keys(options).forEach((key) => {
+    const val = options[key];
+
+    if (key === "format" && val !== "gnu") {
+      vnuCmd += "--format " + val + " ";
+    }
+    if (val === true) {
+      vnuCmd += "--" + key + " ";
+    }
   });
 
-  var stream  = through.obj(function(file, enc, cb) {
-    if (file.isNull()) return cb(null, file);
+  const stream = through.obj((file, enc, cb) => {
+    if (file.isNull()) {
+      return cb(null, file);
+    }
     if (file.isStream()) {
-      return cb(new PluginError('gulp-html', 'Streaming not supported'));
+      return cb(new PluginError("gulp-html", "Streaming not supported"));
     }
 
-    exec(vnuCmd + file.history, function (err, stdout, stderr) {
-      if (err === null) return cb(null, file);
-      return cb(new PluginError('gulp-html', stderr || stdout));
+    exec(vnuCmd + file.history, (err, stdout, stderr) => {
+      if (err === null) {
+        return cb(null, file);
+      }
+
+      return cb(new PluginError("gulp-html", stderr || stdout));
     });
   });
 
