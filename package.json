@@ -21,12 +21,14 @@
   },
   "homepage": "https://github.com/watilde/gulp-html",
   "devDependencies": {
-    "gulp": "^3.8.10"
+    "gulp": "^3.9.1"
   },
   "dependencies": {
-    "gulp-util": "^3.0.2",
+    "gulp-util": "^3.0.8",
     "merge": "^1.2.0",
     "through2": "^2.0.3",
-    "vnu-jar": "^17.5.20"
+    "winston": "^2.4.0",
+    "chalk": "^2.3.0",
+    "vnu-jar": "^17.11.1"
   }
 }
