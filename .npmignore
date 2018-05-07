@@ -1,0 +1,16 @@
+# Tests
+test/
+
+# Tools
+.editorconfig
+.gitattributes
+.gitignore
+.travis.yml
+
+# JavaScript
+node_modules/
+.eslintrc*
+
+# Logs
+logs/
+*.log
