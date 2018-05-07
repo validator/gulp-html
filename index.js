@@ -13,7 +13,8 @@ module.exports = async function(filepath, opt) {
   // Set options
   for (const [ key, val ] of Object.entries(options)) {
     if (key === "format") {
-      throw new Error("Error: format option is forbidden in this module.");
+      console.warn(`WARNING: ${key} option is ignored in this module.`);
+      continue;
     }
     if (val === true) {
       vnuCmd += `--${key} `;
