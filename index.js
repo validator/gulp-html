@@ -6,13 +6,12 @@ module.exports = async function(filepath, opt) {
     "errors-only": false,
     html: false,
     "no-stream": false,
-    verbose: false,
   }, opt);
   let vnuCmd = `java -Xss1024k -jar ${vnuJar} `;
 
   // Set options
   for (const [ key, val ] of Object.entries(options)) {
-    if (key === "format") {
+    if (key === "format" || key === "exit-zero-always" || key === "verbose") {
       console.warn(`WARNING: ${key} option is ignored in this module.`);
       continue;
     }
