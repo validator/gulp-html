@@ -1,25 +1,27 @@
 {
-  "name": "gulp-html",
+  "name": "vnu",
   "version": "0.4.7",
-  "description": "gulp plugin for HTML validation, using vnu.jar",
+  "description": "Unofficial Node.js wrapper for Nu HTML Checker",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./test/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/watilde/gulp-html.git"
+    "url": "https://github.com/phanect/vnujs.git"
   },
   "keywords": [
-    "gulpplugin",
-    "htmllint"
+    "Nu HTML Checker",
+    "linter",
+    "HTML"
   ],
-  "author": "Daijiro Wachi",
+  "author": "Jumpei Ogawa",
+  "contributors": [ "Daijiro Wachi" ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/watilde/gulp-html/issues"
+    "url": "https://github.com/phanect/vnujs/issues"
   },
-  "homepage": "https://github.com/watilde/gulp-html",
+  "homepage": "https://github.com/phanect/vnujs",
   "devDependencies": {
     "@phanect/eslint-config-phanective": "latest",
     "chai": "^4.1.2",
