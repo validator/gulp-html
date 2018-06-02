@@ -1,25 +1,40 @@
-# gulp-html [![Build Status](https://travis-ci.org/watilde/gulp-html.svg)](https://travis-ci.org/watilde/gulp-html) [![NPM Version](http://img.shields.io/npm/v/gulp-html.svg)](https://www.npmjs.org/package/gulp-html) [![Dependency Status](https://gemnasium.com/watilde/gulp-html.svg)](https://gemnasium.com/watilde/gulp-html)
+# vnu [![NPM Version](http://img.shields.io/npm/v/vnu.svg)](https://www.npmjs.org/package/vnu)
 
-gulp plugin for HTML validation, using the [vnu.jar](https://validator.github.io/)
+Unofficial Node.js wrapper for [Nu HTML Checker](https://validator.github.io/)
+
+## Requirement
+
+- Java
+- Node.js & npm
 
 ## Install
-Run `npm install gulp-html`.
+Run
+
+```sh
+yarn add vnu
+```
+
+or
+
+```sh
+npm install vnu
+```
 
 ## Usage
 
 ```js
-var gulp   = require('gulp');
-var validator = require('gulp-html');
+(async () => {
+  const vnu = require("vnu");
 
-gulp.task('html', function() {
-  return gulp.src('src/index.html')
-  .pipe(validator())
-  .pipe(gulp.dest('dist/'));
-});
+  const result = await vnu("https://example.com/", { // Specify URL or filepath
+    "errors-only": true,
+  });
+})();
 ```
 
 ## Options
 The options object supports the same options as the standard The Nu Markup Checker.
+`format`, `verbose`,
 
 See also: http://validator.github.io/validator/#options
 
@@ -27,11 +42,6 @@ See also: http://validator.github.io/validator/#options
 Type: `Boolean`
 
 Default: `false`
-
-### format
-Type: `String`
-
-Default: `"gnu"`
 
 ### html
 Type: `Boolean`
@@ -48,7 +58,38 @@ Type: `Boolean`
 
 Default: `false`
 
+## Return
+
+```js
+[
+  {
+    type: "error",
+    url: "https://amazon.co.jp",
+    lastLine: 4,
+    lastColumn: 55,
+    firstColumn: 1,
+    message: "Bad value “x-dns-prefetch-control” for attribute “http-equiv” on element “meta”.",
+    extract: "ation -->\n<meta http-equiv='x-dns-prefetch-control' content='on'><link ",
+    hiliteStart: 10,
+    hiliteLength: 55
+  },
+  {
+    type: "error",
+    url: "https://amazon.co.jp",
+    lastLine: 67,
+    lastColumn: 108859,
+    message: "CSS: “color”: Parse Error.",
+    extract: "with_important()}.a-button-pri",
+    hiliteStart: 15,
+    hiliteLength: 1
+  },
+  // ...
+]
+```
+
 ## License
-Copyright 2015 Daijiro Wachi
+Copyright 2018 Jumpei Ogawa
 
 This software is released under the MIT License. See [LICENSE](/LICENSE).
+
+This software is fork of [gulp-html](https://github.com/watilde/gulp-html) by [Daijiro Wachi](https://github.com/watilde)
