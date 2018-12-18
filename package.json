@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/watilde/gulp-html.git"
+    "url": "https://github.com/validator/gulp-html.git"
   },
   "keywords": [
     "gulpplugin",
@@ -17,9 +17,9 @@
   "author": "Daijiro Wachi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/watilde/gulp-html/issues"
+    "url": "https://github.com/validator/gulp-html/issues"
   },
-  "homepage": "https://github.com/watilde/gulp-html",
+  "homepage": "https://github.com/validator/gulp-html",
   "devDependencies": {
     "gulp": "^3.9.1"
   },
