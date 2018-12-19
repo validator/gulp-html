@@ -1,8 +1,8 @@
-var gulp   = require('gulp');
-var validator = require('./');
+const gulp   = require('gulp');
+const validator = require('./');
 
-gulp.task('ok', function () {
-  var status = true;
+const ok = () => {
+  let status = true;
   return gulp.src('./test/ok.html')
   .pipe(validator())
   .on('error', function () {
@@ -12,10 +12,10 @@ gulp.task('ok', function () {
     if (status === true) return;
     throw new Error("ok.html isn't ok");
   });
-});
+};
 
-gulp.task('ng', function () {
-  var status = true;
+const ng = () => {
+  let status = true;
   try {
     return gulp.src('./test/ng.html')
       .pipe(validator())
@@ -27,6 +27,6 @@ gulp.task('ng', function () {
         throw new Error("ng.html isn't ng");
       });
   } catch (e) {}
-});
+};
 
-gulp.task('test', ['ok']);
+gulp.task('test', ok, ng);

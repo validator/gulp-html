@@ -1,13 +1,12 @@
-var exec = require('child_process').exec;
-var through = require('through2');
-var gutil = require('gulp-util');
-var merge = require('merge');
-var PluginError = gutil.PluginError;
-var chalk = require('chalk');
-var winston = require('winston');
-var vnuJar = require('vnu-jar');
+const exec = require('child_process').exec;
+const through = require('through2');
+const merge = require('merge');
+const PluginError = require('plugin-error');
+const chalk = require('chalk');
+const winston = require('winston');
+const vnuJar = require('vnu-jar');
 
-var vnuErrorLevels = {
+const vnuErrorLevels = {
   levels: {
     'success': 0,
     'error': 1,
@@ -22,7 +21,7 @@ var vnuErrorLevels = {
   }
 };
 
-const logger = new (winston.Logger)({
+const logger = winston.createLogger({
   levels: vnuErrorLevels.levels,
   transports: [
     new (winston.transports.Console)({
