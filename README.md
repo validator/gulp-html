@@ -8,14 +8,14 @@ Run `npm install gulp-html`.
 ## Usage
 
 ```js
-var gulp   = require('gulp');
-var validator = require('gulp-html');
+const gulp   = require('gulp');
+const validator = require('gulp-html');
 
-gulp.task('html', function() {
+const html = () => {
   return gulp.src('src/index.html')
   .pipe(validator())
   .pipe(gulp.dest('dist/'));
-});
+};
 ```
 
 ## Options
