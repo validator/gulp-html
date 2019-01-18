@@ -37,4 +37,4 @@ const ng = () => {
   } catch (error) {}
 };
 
-gulp.task('test', ok, ng);
+gulp.task('test', gulp.parallel(ok, ng));
