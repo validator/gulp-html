@@ -1,14 +1,11 @@
 {
   "name": "gulp-html",
   "version": "0.5.0",
-  "description": "gulp plugin for HTML validation, using vnu.jar",
+  "description": "gulp plugin for HTML validation, using the Nu Html Checker (v.Nu)",
   "main": "index.js",
-  "scripts": {
-    "test": "gulp test"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/validator/gulp-html.git"
+    "url": "git+https://github.com/validator/gulp-html.git"
   },
   "keywords": [
     "gulpplugin",
@@ -20,15 +17,59 @@
     "url": "https://github.com/validator/gulp-html/issues"
   },
   "homepage": "https://github.com/validator/gulp-html",
-  "devDependencies": {
-    "gulp": "^4.0.0"
+  "scripts": {
+    "xo": "xo",
+    "test": "npm run xo && gulp test"
+  },
+  "engines": {
+    "node": ">=6"
   },
   "dependencies": {
-    "chalk": "^2.3.0",
-    "merge": "^1.2.0",
+    "chalk": "^2.4.2",
+    "merge": "^1.2.1",
     "plugin-error": "^1.0.1",
     "through2": "^3.0.0",
-    "vnu-jar": "^17.11.1",
+    "vnu-jar": "18.11.5",
     "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "xo": "^0.24.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "xo": {
+    "rules": {
+      "capitalized-comments": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "MemberExpression": "off",
+          "SwitchCase": 1
+        }
+      ],
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "prefer-destructuring": [
+        "error",
+        {
+          "object": true,
+          "array": false
+        }
+      ],
+      "quote-props": [
+        "error",
+        "consistent"
+      ],
+      "space-before-function-paren": [
+        "error",
+        "never"
+      ],
+      "unicorn/filename-case": "off"
+    }
   }
 }
