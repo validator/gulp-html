@@ -1,12 +1,11 @@
 'use strict';
 
 const { exec } = require('child_process');
-const through = require('through2');
-const merge = require('merge');
-const PluginError = require('plugin-error');
 const chalk = require('chalk');
-const winston = require('winston');
+const PluginError = require('plugin-error');
+const through = require('through2');
 const vnuJar = require('vnu-jar');
+const winston = require('winston');
 
 const vnuErrorLevels = {
   levels: {
@@ -48,16 +47,18 @@ const logger = winston.createLogger({
   ]
 });
 
-module.exports = opt => {
+module.exports = opts => {
   let vnuCmd = `java -Xss1024k -jar ${vnuJar} `;
 
-  const options = merge({
+  const defaultOptions = {
     'errors-only': false,
     'format': 'gnu',
     'html': false,
     'no-stream': false,
     'verbose': false
-  }, opt);
+  };
+
+  const options = Object.assign(defaultOptions, opts);
 
   // Set options
   Object.keys(options).forEach(key => {
