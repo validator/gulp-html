@@ -1,7 +1,45 @@
-const exec = require("child_process").exec,
-      vnuJar = require("vnu-jar");
+import { exec } from "child_process";
+import * as vnuJar from "vnu-jar";
 
-module.exports = async function(filepath, opt) {
+interface NuOptions {
+  "errors-only"?: boolean;
+  filterfile?: string;
+  filterpattern?: string;
+  "skip-non-css"?: boolean;
+  css?: boolean;
+  "skip-non-svg"?: boolean;
+  svg?: boolean;
+  "skip-non-html"?: boolean;
+  html?: boolean;
+  "no-stream"?: boolean;
+  "also-check-css"?: boolean;
+  "also-check-svg"?: boolean;
+  "user-agent"?: string;
+  "no-langdetect"?: boolean;
+}
+
+interface NuResult {
+  type: "error" | "info";
+  subType?: "warning";
+  url: string;
+  firstLine?: number;
+  firstColumn?: number;
+  lastLine: number;
+  lastColumn: number;
+  hiliteStart: number;
+  hiliteLength: number;
+  message: string;
+  extract: string;
+}
+
+/**
+ * Validate HTML with Nu HTML Checker.
+ *
+ * @param {string} filepath - File path or URL of the HTML to validate.
+ * @param {object} opt - Options to pass Nu HTML Checker. See https://validator.github.io/validator/#options for details.
+ * @returns {object[]} - Objects of detected errors and warnings. Empty array if there are no errors and warnings detected.
+ */
+export default async function vnu(filepath: string, opt: NuOptions = {}): Promise<NuResult[]> {
   const options = Object.assign({
     "errors-only": false,
     html: false,
@@ -22,7 +60,7 @@ module.exports = async function(filepath, opt) {
 
   vnuCmd += `--format json ${filepath}`;
 
-  return new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     exec(vnuCmd, (err, stdout, stderr) => {
       // Don't reject when Nu HTML Checker return 1 as return code (It returns 1 when HTML is not valid)
       if (err && !err.message.startsWith("Command failed:")) {
@@ -33,5 +71,5 @@ module.exports = async function(filepath, opt) {
 
       return resolve(JSON.parse(stderr).messages);
     });
-  });
+  }) as NuResult[];
 };
