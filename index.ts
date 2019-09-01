@@ -39,7 +39,7 @@ interface NuResult {
  * @param {object} opt - Options to pass Nu HTML Checker. See https://validator.github.io/validator/#options for details.
  * @returns {object[]} - Objects of detected errors and warnings. Empty array if there are no errors and warnings detected.
  */
-export default async function vnu(filepath: string, opt: NuOptions = {}): Promise<NuResult[]> {
+export async function vnu(filepath: string, opt: NuOptions = {}): Promise<NuResult[]> {
   const options = Object.assign({
     "errors-only": false,
     html: false,

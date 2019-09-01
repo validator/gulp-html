@@ -2,7 +2,7 @@
 
 import { expect } from "chai";
 import { join } from "path";
-import vnu from "../";
+import { vnu } from "../";
 
 describe("vnu", function() {
   this.timeout(10000);

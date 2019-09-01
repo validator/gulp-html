@@ -24,7 +24,7 @@ npm install vnu
 
 ```js
 (async () => {
-  const vnu = require("vnu"); // Or import vnu from "vnu";
+  const { vnu } = require("vnu"); // Or import { vnu } from "vnu";
 
   const result = await vnu("https://example.com/", { // Specify URL or filepath
     "errors-only": true,
