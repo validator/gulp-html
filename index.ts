@@ -49,7 +49,14 @@ export default async function vnu(filepath: string, opt: NuOptions = {}): Promis
 
   // Set options
   for (const [ key, val ] of Object.entries(options)) {
-    if (key === "format" || key === "exit-zero-always" || key === "verbose") {
+    if (
+      key === "format" ||
+      key === "exit-zero-always" ||
+      key === "help" ||
+      key === "verbose" ||
+      key === "version" ||
+      key === "Werror"
+    ) {
       console.warn(`WARNING: ${key} option is ignored in this module.`);
       continue;
     }
