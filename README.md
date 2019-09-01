@@ -24,7 +24,7 @@ npm install vnu
 
 ```js
 (async () => {
-  const vnu = require("vnu");
+  const vnu = require("vnu"); // Or import vnu from "vnu";
 
   const result = await vnu("https://example.com/", { // Specify URL or filepath
     "errors-only": true,
@@ -32,33 +32,93 @@ npm install vnu
 })();
 ```
 
-## Options
-The options object supports the same options as the standard The Nu Markup Checker.
-`format`, `verbose`,
+## Syntax
 
+```js
+const result = await vnu(filepath, options);
+```
+
+### Parameters
+
+#### url: string
+
+A URL or filepath (absolute or relative) to validate.
+
+#### options: object
+
+The options object supports most of the options supported in The Nu Markup Checker.
 See also: http://validator.github.io/validator/#options
 
-### errors-only
+#### `options.asciiquotes`
 Type: `Boolean`
-
 Default: `false`
 
-### html
+#### `options.errors-only`
 Type: `Boolean`
-
 Default: `false`
 
-### no-stream
-Type: `Boolean`
+#### `options.filterfile`
+Type: `String`
+Default: `undefined`
 
+#### `options.filterpattern`
+Type: `String`
+Default: `undefined`
+
+#### `options.skip-non-css`
+Type: `Boolean`
 Default: `false`
 
-### verbose
+#### `options.css`
 Type: `Boolean`
-
 Default: `false`
 
-## Return
+#### `options.skip-non-svg`
+Type: `Boolean`
+Default: `false`
+
+#### `options.svg`
+Type: `Boolean`
+Default: `false`
+
+#### `options.skip-non-html`
+Type: `Boolean`
+Default: `false`
+
+#### `options.html`
+Type: `Boolean`
+Default: `false`
+
+#### `options.no-stream`
+Type: `Boolean`
+Default: `false`
+
+#### `options.also-check-css`
+Type: `Boolean`
+Default: `false`
+
+#### `options.also-check-svg`
+Type: `Boolean`
+Default: `false`
+
+#### `options.user-agent`
+Type: `String`
+Default: `"Validator.nu/LV"`
+
+#### `options.no-langdetect`
+Type: `Boolean`
+Default: `false`
+
+#### Unsupported options
+
+- `exit-zero-always`
+- `format`
+- `help`
+- `Werror`
+- `verbose`
+- `version`
+
+### Return values
 
 ```js
 [
