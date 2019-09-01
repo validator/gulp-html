@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/phanect/vnujs",
   "devDependencies": {
-    "@phanect/eslint-config-phanective": "latest",
+    "@phanect/eslint-plugin": "latest",
     "@types/chai": "^4.2.2",
     "@types/express": "^4.17.1",
     "@types/mocha": "^5.2.7",
