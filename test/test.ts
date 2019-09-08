@@ -1,6 +1,8 @@
 "use strict";
 
 import { expect } from "chai";
+import * as express from "express";
+import { readFileSync } from "fs";
 import { join } from "path";
 import { vnu } from "../";
 
@@ -56,7 +58,7 @@ describe("vnu", function() {
       ]);
   });
 
-  it("should pass options to vnu.jar", async function() {
+  it("should pass boolean options to vnu.jar", async function() {
     const result = await vnu(join(__dirname, "./invalid.html"), {
       "errors-only": true,
     });
@@ -87,5 +89,31 @@ describe("vnu", function() {
           hiliteLength: 99,
         },
       ]);
+  });
+
+  it("should pass string options to vnu.jar", function(done) {
+    const app = express();
+    const server = app.listen(9876, () => {});
+    app.get("/", (req, res) => {
+      const userAgent = req.get("User-Agent");
+
+      if (userAgent === "test-user-agent") {
+        const html = readFileSync(join(__dirname, "valid.html")).toString();
+        res.send(html);
+
+        server.close();
+        done();
+      } else {
+        const html = readFileSync(join(__dirname, "invalid.html")).toString();
+        res.send(html);
+
+        server.close();
+        done(new Error("User agent string is not sent."));
+      }
+    });
+
+    vnu("http://localhost:9876", {
+      "user-agent": "test-user-agent",
+    });
   });
 });

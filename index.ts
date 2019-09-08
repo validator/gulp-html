@@ -49,7 +49,7 @@ export async function vnu(filepath: string, opt: NuOptions = {}): Promise<NuResu
 
   // Set options
   for (const [ key, val ] of Object.entries(options)) {
-    if (
+    if ( // Unsupported options
       key === "format" ||
       key === "exit-zero-always" ||
       key === "help" ||
@@ -59,8 +59,13 @@ export async function vnu(filepath: string, opt: NuOptions = {}): Promise<NuResu
     ) {
       console.warn(`WARNING: ${key} option is ignored in this module.`);
       continue;
-    }
-    if (val === true) {
+    } else if ( // String options
+      key === "filterfile" ||
+      key === "filterpattern" ||
+      key === "user-agent"
+    ) {
+      vnuCmd += `--${key} "${val}" `;
+    } else if (val === true) { // Boolean options, and true is set
       vnuCmd += `--${key} `;
     }
   }
