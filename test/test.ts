@@ -1,27 +1,27 @@
 "use strict";
 
-const expect = require("chai").expect,
-      path = require("path"),
-      vnu = require("../index");
+import { expect } from "chai";
+import { join } from "path";
+import vnu from "../";
 
 describe("vnu", function() {
   this.timeout(10000);
 
   it("should return empty array if there is no error in the analyzed HTML", async function() {
-    const result = await vnu(path.join(__dirname, "./valid.html"));
+    const result = await vnu(join(__dirname, "./valid.html"));
 
     expect(result).to.be.an("array").that.is.empty;
   });
 
   it("should return array of the error info object if there is errors or warnings in the analyzed HTML", async function() {
-    const result = await vnu(path.join(__dirname, "./invalid.html"));
+    const result = await vnu(join(__dirname, "./invalid.html"));
 
     expect(result)
       .to.be.an("array")
       .that.is.deep.equal([
         {
           type: "error",
-          url: "file:" + path.join(__dirname, "./invalid.html"),
+          url: "file:" + join(__dirname, "./invalid.html"),
           lastLine: 8,
           lastColumn: 10,
           firstColumn: 3,
@@ -32,7 +32,7 @@ describe("vnu", function() {
         },
         {
           type: "error",
-          url: "file:" + path.join(__dirname, "./invalid.html"),
+          url: "file:" + join(__dirname, "./invalid.html"),
           lastLine: 9,
           lastColumn: 101,
           firstColumn: 3,
@@ -43,7 +43,7 @@ describe("vnu", function() {
         },
         {
           type: "info",
-          url: "file:" + path.join(__dirname, "./invalid.html"),
+          url: "file:" + join(__dirname, "./invalid.html"),
           lastLine: 9,
           lastColumn: 101,
           firstColumn: 3,
@@ -57,7 +57,7 @@ describe("vnu", function() {
   });
 
   it("should pass options to vnu.jar", async function() {
-    const result = await vnu(path.join(__dirname, "./invalid.html"), {
+    const result = await vnu(join(__dirname, "./invalid.html"), {
       "errors-only": true,
     });
 
@@ -66,7 +66,7 @@ describe("vnu", function() {
       .that.is.deep.equal([
         {
           type: "error",
-          url: "file:" + path.join(__dirname, "./invalid.html"),
+          url: "file:" + join(__dirname, "./invalid.html"),
           lastLine: 8,
           lastColumn: 10,
           firstColumn: 3,
@@ -77,7 +77,7 @@ describe("vnu", function() {
         },
         {
           type: "error",
-          url: "file:" + path.join(__dirname, "./invalid.html"),
+          url: "file:" + join(__dirname, "./invalid.html"),
           lastLine: 9,
           lastColumn: 101,
           firstColumn: 3,
