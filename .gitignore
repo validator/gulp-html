@@ -1,3 +1,6 @@
+# Project Specific
+dist/
+
 # Logs
 logs
 *.log

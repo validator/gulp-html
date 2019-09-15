@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "newLine": "lf",
+    "target": "es2015",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "strict": true,
+    "strictNullChecks": false
+  },
+  "include": [
+    "*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "**/*-spec.ts"
+  ]
+}
