@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "lint": "eslint --ext=.js,.ts .",
     "test": "ts-mocha ./test/*.ts"
   },
   "repository": {
