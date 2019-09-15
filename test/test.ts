@@ -7,7 +7,7 @@ import { join } from "path";
 import { vnu } from "../";
 
 describe("vnu", function() {
-  this.timeout(10000);
+  this.timeout(30000);
 
   it("should return empty array if there is no error in the analyzed HTML", async function() {
     const result = await vnu(join(__dirname, "./valid.html"));
