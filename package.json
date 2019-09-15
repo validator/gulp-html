@@ -1,6 +1,6 @@
 {
   "name": "vnu",
-  "version": "0.0.1",
+  "version": "19.6.7",
   "description": "Unofficial Node.js wrapper for Nu HTML Checker",
   "main": "dist/index.js",
   "scripts": {
@@ -40,6 +40,6 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "vnu-jar": "^18.3.0"
+    "vnu-jar": "19.6.7"
   }
 }
