@@ -3,6 +3,7 @@
   "version": "19.6.7",
   "description": "Unofficial Node.js wrapper for Nu HTML Checker",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "lint": "eslint --ext=.js,.ts .",
