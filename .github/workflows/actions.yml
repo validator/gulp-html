@@ -1,9 +1,22 @@
 name: Actions
 
 on:
-  - push
-  - pull_request
-  - release
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+  push:
+    branches:
+      - master
+  release:
+    types:
+      - published
+      - created
+      - prereleased
 
 jobs:
   build:
@@ -41,4 +54,4 @@ jobs:
       - run: yarn build && yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-    if: github.event_name == 'release' && (github.event.action == 'published' || github.event.action == 'created' || github.event.action == 'prereleased')
+    if: github.event_name == 'release'
