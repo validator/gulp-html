@@ -41,6 +41,6 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "vnu-jar": "19.6.7"
+    "vnu-jar": "19.9.4"
   }
 }
