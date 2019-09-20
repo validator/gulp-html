@@ -1,5 +1,6 @@
 # gulp-html
 
+[![NPM version](https://img.shields.io/npm/v/gulp-html.svg)](https://www.npmjs.com/package/gulp-html)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/validator/gulp-html.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/validator/gulp-html/alerts/)
 ![Build Status](https://action-badges.now.sh/validator/gulp-html)
 [![dependencies Status](https://img.shields.io/david/validator/gulp-html.svg)](https://david-dm.org/validator/gulp-html)
