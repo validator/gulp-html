@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/gulp-html.svg)](https://www.npmjs.com/package/gulp-html)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/validator/gulp-html.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/validator/gulp-html/alerts/)
-![Build Status](https://github.com/validator/gulp-html/workflows/Tests/badge.svg)
+[![Build Status](https://github.com/validator/gulp-html/workflows/Tests/badge.svg)](https://github.com/validator/gulp-html/actions?workflow=Tests)
 [![dependencies Status](https://img.shields.io/david/validator/gulp-html.svg)](https://david-dm.org/validator/gulp-html)
 [![devDependencies Status](https://img.shields.io/david/dev/validator/gulp-html.svg)](https://david-dm.org/validator/gulp-html?type=dev)
 
