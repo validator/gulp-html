@@ -35,12 +35,12 @@ npm install vnu
 ## Syntax
 
 ```js
-const result = await vnu(filepath, options);
+const result = await vnu(target, options);
 ```
 
 ### Parameters
 
-#### url: string
+#### target: string
 
 A URL or filepath (absolute or relative) to validate.
 

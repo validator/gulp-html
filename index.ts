@@ -35,11 +35,11 @@ interface NuResult {
 /**
  * Validate HTML with Nu HTML Checker.
  *
- * @param {string} filepath - File path or URL of the HTML to validate.
+ * @param {string} target - File path or URL of the HTML to validate.
  * @param {object} opt - Options to pass Nu HTML Checker. See https://validator.github.io/validator/#options for details.
  * @returns {object[]} - Objects of detected errors and warnings. Empty array if there are no errors and warnings detected.
  */
-export async function vnu(filepath: string, opt: NuOptions = {}): Promise<NuResult[]> {
+export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult[]> {
   const options = Object.assign({
     "errors-only": false,
     html: false,
@@ -70,7 +70,7 @@ export async function vnu(filepath: string, opt: NuOptions = {}): Promise<NuResu
     }
   }
 
-  vnuCmd += `--format json ${filepath}`;
+  vnuCmd += `--format json ${target}`;
 
   return await new Promise((resolve, reject) => {
     exec(vnuCmd, (err, stdout, stderr) => {
