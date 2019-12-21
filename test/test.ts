@@ -119,4 +119,13 @@ describe("vnu", function() {
       "user-agent": "test-user-agent",
     });
   });
+
+  it("should return an error when you cannot connect to the URL", async function() {
+    expect(await vnu("http://localhost:1673")).to.be.deep.equal([{
+      type: "non-document-error",
+      subType: "io",
+      url: "http://localhost:1673",
+      message: "Connect to localhost:1673 [localhost/127.0.0.1] failed: Connection refused (Connection refused)",
+    }]);
+  });
 });
