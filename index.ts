@@ -79,7 +79,9 @@ export async function vnu(filepath: string, opt: NuOptions = {}): Promise<NuResu
         return reject(err);
       }
 
-      console.log(stdout);
+      if (stdout) {
+        console.log(stdout);
+      }
 
       return resolve(JSON.parse(stderr).messages);
     });
