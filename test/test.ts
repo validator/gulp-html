@@ -60,6 +60,62 @@ describe("vnu", function() {
       ]);
   });
 
+  it("should be properly analyzed when HTML string is given", async function() {
+    const result = await vnu(`
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="utf-8">
+          <title>Invalid HTML</title>
+        </head>
+        <body>
+          <center>This HTML is invalid</center>
+          <img
+            src="https://pbs.twimg.com/profile_images/820979755117789185/FtReP1a1_400x400.jpg"
+            border="0">
+        </body>
+      </html>
+    `);
+
+    expect(result)
+      .to.be.an("array")
+      .that.is.deep.equal([
+        {
+          type: "error",
+          lastLine: 9,
+          lastColumn: 18,
+          firstColumn: 11,
+          message: "The \u201ccenter\u201d element is obsolete. Use CSS instead.",
+          extract: "          <center>This H",
+          hiliteStart: 10,
+          hiliteLength: 8,
+        },
+        {
+          type: "error",
+          lastLine: 12,
+          lastColumn: 23,
+          firstLine: 10,
+          firstColumn: 11,
+          message: "An \u201cimg\u201d element must have an \u201calt\u201d attribute, except under certain conditions. For details, consult guidance on providing text alternatives for images.",
+          extract: "          <img\n            src=\"https://pbs.twimg.com/profile_images/820979755117789185/FtReP1a1_400x400.jpg\"\n            border=\"0\">\n     ",
+          hiliteStart: 10,
+          hiliteLength: 123,
+        },
+        {
+          type: "info",
+          lastLine: 12,
+          lastColumn: 23,
+          firstLine: 10,
+          firstColumn: 11,
+          subType: "warning",
+          message: "The \u201cborder\u201d attribute is obsolete. Consider specifying \u201cimg { border: 0; }\u201d in CSS instead.",
+          extract: "          <img\n            src=\"https://pbs.twimg.com/profile_images/820979755117789185/FtReP1a1_400x400.jpg\"\n            border=\"0\">\n     ",
+          hiliteStart: 10,
+          hiliteLength: 123,
+        },
+      ]);
+  });
+
   it("should pass boolean options to vnu.jar", async function() {
     const result = await vnu(join(__dirname, "./invalid.html"), {
       "errors-only": true,
@@ -96,7 +152,7 @@ describe("vnu", function() {
 
   it("should pass string options to vnu.jar", function(done) {
     const app = express();
-    const server = app.listen(9876, () => {});
+    const server = app.listen(9876);
     app.get("/", (req, res) => {
       const userAgent = req.get("User-Agent");
 
