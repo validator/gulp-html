@@ -1,6 +1,6 @@
 {
   "name": "vnu",
-  "version": "19.9.4-1",
+  "version": "19.9.4-2",
   "description": "Unofficial Node.js wrapper for Nu HTML Checker",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/phanect/vnujs",
   "dependencies": {
+    "tmp-promise": "^2.0.2",
     "vnu-jar": "19.9.4"
   },
   "devDependencies": {
@@ -36,6 +37,7 @@
     "@types/express": "^4.17.1",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.7.1",
+    "@types/tmp": "^0.1.0",
     "@types/vnu-jar": "^17.11.0",
     "chai": "^4.1.2",
     "eslint": "latest",

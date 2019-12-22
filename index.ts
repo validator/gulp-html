@@ -1,5 +1,6 @@
 import { exec } from "child_process";
-import { existsSync } from "fs";
+import { existsSync, writeFileSync } from "fs";
+import { file } from "tmp-promise";
 import * as vnuJar from "vnu-jar";
 
 // For Node.js 8.x
@@ -25,7 +26,7 @@ interface NuOptions {
 interface NuResult {
   type: "error" | "info";
   subType?: "warning";
-  url: string;
+  url?: string;
   firstLine?: number;
   firstColumn?: number;
   lastLine: number;
@@ -64,6 +65,7 @@ function isURL(str: string): boolean {
  */
 export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult[]> {
   let mode: ("url" | "html") = "url";
+  let cleanupTmp = (): void => { /* By default do nothing */ };
 
   if (isURL(target) || existsSync(target)) {
     mode = "url";
@@ -104,9 +106,20 @@ export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult
   vnuCmd += "--format json ";
 
   if (mode === "url") {
-    vnuCmd += target;
+    vnuCmd += `"${target}"`;
   } else { // mode === "html"
-    vnuCmd = `echo "${target.replace(/\"/g, "\\\"")}" | ${vnuCmd}-`;
+    if (process.platform === "win32") {
+      const { fd, path, cleanup } = await file();
+
+      cleanupTmp = cleanup;
+      writeFileSync(fd, target); // write file content to tmp file
+
+      vnuCmd = `${vnuCmd}${path}`;
+    } else {
+      vnuCmd = `cat << _EOF_ | ${vnuCmd}-
+${target}
+_EOF_`;
+    }
   }
 
   return await new Promise((resolve, reject) => {
@@ -120,7 +133,34 @@ export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult
         console.log(stdout);
       }
 
-      return resolve(JSON.parse(stderr).messages);
+      try {
+        let messages: NuResult[] = JSON.parse(stderr).messages;
+
+        if (process.platform === "win32" && mode === "html") {
+          cleanupTmp();
+
+          messages = messages.map(message => {
+            delete message.url;
+            return message;
+          });
+        }
+
+        return resolve(messages);
+      } catch (err) {
+        if (err instanceof SyntaxError) {
+          reject(new SyntaxError(`Nu HTML Checker did not return JSON. The output Nu HTML Checker returned is:
+-----
+${stderr}
+-----
+The command is:
+-----
+${vnuCmd}
+-----
+`));
+        } else {
+          reject(err);
+        }
+      }
     });
   }) as NuResult[];
 };
