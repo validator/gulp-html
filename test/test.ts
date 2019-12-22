@@ -23,7 +23,9 @@ describe("vnu", function() {
       .that.is.deep.equal([
         {
           type: "error",
-          url: "file:" + join(__dirname, "./invalid.html"),
+          url: process.platform === "win32" ?
+            "file:/" + join(__dirname, "./invalid.html").replace(/\\/g, "/") :
+            "file:" + join(__dirname, "./invalid.html"),
           lastLine: 8,
           lastColumn: 10,
           firstColumn: 3,
@@ -34,7 +36,9 @@ describe("vnu", function() {
         },
         {
           type: "error",
-          url: "file:" + join(__dirname, "./invalid.html"),
+          url: process.platform === "win32" ?
+            "file:/" + join(__dirname, "./invalid.html").replace(/\\/g, "/") :
+            "file:" + join(__dirname, "./invalid.html"),
           lastLine: 11,
           lastColumn: 15,
           firstLine: 9,
@@ -46,7 +50,9 @@ describe("vnu", function() {
         },
         {
           type: "info",
-          url: "file:" + join(__dirname, "./invalid.html"),
+          url: process.platform === "win32" ?
+            "file:/" + join(__dirname, "./invalid.html").replace(/\\/g, "/") :
+            "file:" + join(__dirname, "./invalid.html"),
           lastLine: 11,
           lastColumn: 15,
           firstLine: 9,
@@ -126,7 +132,9 @@ describe("vnu", function() {
       .that.is.deep.equal([
         {
           type: "error",
-          url: "file:" + join(__dirname, "./invalid.html"),
+          url: process.platform === "win32" ?
+            "file:/" + join(__dirname, "./invalid.html").replace(/\\/g, "/") :
+            "file:" + join(__dirname, "./invalid.html"),
           lastLine: 8,
           lastColumn: 10,
           firstColumn: 3,
@@ -137,7 +145,9 @@ describe("vnu", function() {
         },
         {
           type: "error",
-          url: "file:" + join(__dirname, "./invalid.html"),
+          url: process.platform === "win32" ?
+            "file:/" + join(__dirname, "./invalid.html").replace(/\\/g, "/") :
+            "file:" + join(__dirname, "./invalid.html"),
           lastLine: 11,
           lastColumn: 15,
           firstLine: 9,
