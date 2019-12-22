@@ -25,7 +25,7 @@ interface NuOptions {
 interface NuResult {
   type: "error" | "info";
   subType?: "warning";
-  url: string;
+  url?: string;
   firstLine?: number;
   firstColumn?: number;
   lastLine: number;
