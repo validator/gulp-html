@@ -194,4 +194,19 @@ describe("vnu", function() {
       message: `Connect to localhost:1673 [localhost/127.0.0.1${process.platform === "win32" ? ", localhost/0:0:0:0:0:0:0:1" : ""}] failed: Connection refused${process.platform === "win32" ? ": connect" : " (Connection refused)"}`,
     }]);
   });
+
+  it("should accept URL including '&' on Windows", async function() {
+    const app = express();
+    const server = app.listen(9876);
+
+    app.get("/", (req, res) => {
+      const html = readFileSync(join(__dirname, "valid.html")).toString();
+      res.send(html);
+
+      server.close();
+    });
+
+    const result = await vnu("http://localhost:9876/?foo=bar&boo=bar");
+    expect(result).to.be.an("array").that.is.empty;
+  });
 });

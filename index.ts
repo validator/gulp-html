@@ -106,7 +106,7 @@ export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult
   vnuCmd += "--format json ";
 
   if (mode === "url") {
-    vnuCmd += target;
+    vnuCmd += `"${target}"`;
   } else { // mode === "html"
     if (process.platform === "win32") {
       const { fd, path, cleanup } = await file();
