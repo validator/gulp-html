@@ -106,7 +106,9 @@ export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult
   if (mode === "url") {
     vnuCmd += target;
   } else { // mode === "html"
-    vnuCmd = `echo "${target.replace(/\"/g, "\\\"")}" | ${vnuCmd}-`;
+    vnuCmd = `cat << _EOF_ | ${vnuCmd}-
+${target}
+_EOF_`;
   }
 
   return await new Promise((resolve, reject) => {
