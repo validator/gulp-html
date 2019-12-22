@@ -191,7 +191,7 @@ describe("vnu", function() {
       type: "non-document-error",
       subType: "io",
       url: "http://localhost:1673",
-      message: "Connect to localhost:1673 [localhost/127.0.0.1] failed: Connection refused (Connection refused)",
+      message: `Connect to localhost:1673 [localhost/127.0.0.1${process.platform === "win32" ? ", localhost/0:0:0:0:0:0:0:1" : ""}] failed: Connection refused${process.platform === "win32" ? ": connect" : " (Connection refused)"}`,
     }]);
   });
 });
