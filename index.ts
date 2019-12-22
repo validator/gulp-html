@@ -1,5 +1,9 @@
 import { exec } from "child_process";
+import { existsSync } from "fs";
 import * as vnuJar from "vnu-jar";
+
+// For Node.js 8.x
+import { URL } from "url";
 
 interface NuOptions {
   "errors-only"?: boolean;
@@ -33,13 +37,40 @@ interface NuResult {
 }
 
 /**
+ * Check if given string is URL.
+ *
+ * @param {string} str - String to check if it is an URL string.
+ * @returns {boolean} - True if given string is URL string, otherwise false.
+ */
+function isURL(str: string): boolean {
+  try {
+    new URL(str);
+    return true;
+  } catch (err) {
+    if (err.code === "ERR_INVALID_URL") {
+      return false;
+    } else {
+      throw err;
+    }
+  }
+}
+
+/**
  * Validate HTML with Nu HTML Checker.
  *
- * @param {string} target - File path or URL of the HTML to validate.
+ * @param {string} target - URL, file path or HTML string to validate.
  * @param {object} opt - Options to pass Nu HTML Checker. See https://validator.github.io/validator/#options for details.
  * @returns {object[]} - Objects of detected errors and warnings. Empty array if there are no errors and warnings detected.
  */
 export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult[]> {
+  let mode: ("url" | "html") = "url";
+
+  if (isURL(target) || existsSync(target)) {
+    mode = "url";
+  } else {
+    mode = "html";
+  }
+
   const options = Object.assign({
     "errors-only": false,
     html: false,
@@ -70,7 +101,13 @@ export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult
     }
   }
 
-  vnuCmd += `--format json ${target}`;
+  vnuCmd += "--format json ";
+
+  if (mode === "url") {
+    vnuCmd += target;
+  } else { // mode === "html"
+    vnuCmd = `echo "${target.replace(/\"/g, "\\\"")}" | ${vnuCmd}-`;
+  }
 
   return await new Promise((resolve, reject) => {
     exec(vnuCmd, (err, stdout, stderr) => {

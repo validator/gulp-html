@@ -26,8 +26,30 @@ npm install vnu
 (async () => {
   const { vnu } = require("vnu"); // Or import { vnu } from "vnu";
 
-  const result = await vnu("https://example.com/", { // Specify URL or filepath
+  const result1 = await vnu("https://example.com/", {
     "errors-only": true,
+  });
+
+  const result2 = await vnu("./example.html", {
+    "asciiquotes": true,
+  });
+
+  const result3 = await vnu(`
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <title>Invalid HTML</title>
+      </head>
+      <body>
+        <center>This HTML is invalid</center>
+        <img
+          src="https://example.com/example.jpg"
+          border="0">
+      </body>
+    </html>
+  `, {
+    "user-agent": "Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Mobile Safari/537.36",
   });
 })();
 ```
