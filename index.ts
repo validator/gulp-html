@@ -1,5 +1,6 @@
 import { exec } from "child_process";
-import { existsSync } from "fs";
+import { existsSync, writeFileSync } from "fs";
+import { file } from "tmp-promise";
 import * as vnuJar from "vnu-jar";
 
 // For Node.js 8.x
@@ -64,6 +65,7 @@ function isURL(str: string): boolean {
  */
 export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult[]> {
   let mode: ("url" | "html") = "url";
+  let cleanupTmp = (): void => { /* By default do nothing */ };
 
   if (isURL(target) || existsSync(target)) {
     mode = "url";
@@ -106,9 +108,18 @@ export async function vnu(target: string, opt: NuOptions = {}): Promise<NuResult
   if (mode === "url") {
     vnuCmd += target;
   } else { // mode === "html"
-    vnuCmd = `cat << _EOF_ | ${vnuCmd}-
+    if (process.platform === "win32") {
+      const { fd, path, cleanup } = await file();
+
+      cleanupTmp = cleanup;
+      writeFileSync(fd, target); // write file content to tmp file
+
+      vnuCmd = `${vnuCmd}${path}`;
+    } else {
+      vnuCmd = `cat << _EOF_ | ${vnuCmd}-
 ${target}
 _EOF_`;
+    }
   }
 
   return await new Promise((resolve, reject) => {
@@ -122,7 +133,18 @@ _EOF_`;
         console.log(stdout);
       }
 
-      return resolve(JSON.parse(stderr).messages);
+      let messages: NuResult[] = JSON.parse(stderr).messages;
+
+      if (process.platform === "win32" && mode === "html") {
+        cleanupTmp();
+
+        messages = messages.map(message => {
+          delete message.url;
+          return message;
+        });
+      }
+
+      return resolve(messages);
     });
   }) as NuResult[];
 };
