@@ -152,7 +152,7 @@ describe("vnu", function() {
 
   it("should pass string options to vnu.jar", function(done) {
     const app = express();
-    const server = app.listen(9876, () => {});
+    const server = app.listen(9876);
     app.get("/", (req, res) => {
       const userAgent = req.get("User-Agent");
 
