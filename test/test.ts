@@ -66,7 +66,7 @@ describe("vnu", function() {
       ]);
   });
 
-  it("should be properly analyzed when HTML string is given", async function() {
+  it("should properly analyze when HTML string is given", async function() {
     const result = await vnu(`
       <!DOCTYPE html>
       <html lang="en">
