@@ -133,18 +133,34 @@ _EOF_`;
         console.log(stdout);
       }
 
-      let messages: NuResult[] = JSON.parse(stderr).messages;
+      try {
+        let messages: NuResult[] = JSON.parse(stderr).messages;
 
-      if (process.platform === "win32" && mode === "html") {
-        cleanupTmp();
+        if (process.platform === "win32" && mode === "html") {
+          cleanupTmp();
 
-        messages = messages.map(message => {
-          delete message.url;
-          return message;
-        });
+          messages = messages.map(message => {
+            delete message.url;
+            return message;
+          });
+        }
+
+        return resolve(messages);
+      } catch (err) {
+        if (err instanceof SyntaxError) {
+          reject(new SyntaxError(`Nu HTML Checker did not return JSON. The output Nu HTML Checker returned is:
+-----
+${stderr}
+-----
+The command is:
+-----
+${vnuCmd}
+-----
+`));
+        } else {
+          reject(err);
+        }
       }
-
-      return resolve(messages);
     });
   }) as NuResult[];
 };
