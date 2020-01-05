@@ -2270,10 +2270,10 @@ vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vnu-jar@19.9.4:
-  version "19.9.4"
-  resolved "https://registry.yarnpkg.com/vnu-jar/-/vnu-jar-19.9.4.tgz#fa04135dee3df1cdb1bbcbcd11fc40b73fd39d8a"
-  integrity sha512-x91WyaNr1oPJaYZkbyMElRyV60BUaxPuhm3zXXjlFOpW3E2KavPWlyohX0LTf6gX7/tujIMgLE5UGc0jn7o4XQ==
+vnu-jar@20.1.2:
+  version "20.1.2"
+  resolved "https://registry.yarnpkg.com/vnu-jar/-/vnu-jar-20.1.2.tgz#98558dd7de00d5b9fa23aa11d25568972aa6feb7"
+  integrity sha512-j2ZVSIlDug2vpzBwbZqDrVmM2sh49a36vaqJorX1P2DT71/LW9stS4Cpeh+qih5FWQmuNkZAopIzbOmlXJjs9Q==
 
 vue-eslint-parser@^6.0.5:
   version "6.0.5"
