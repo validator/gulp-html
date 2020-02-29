@@ -29,3 +29,7 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# lockfiles
+package-lock.json
+yarn.lock
