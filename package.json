@@ -1,6 +1,6 @@
 {
   "name": "gulp-html",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "gulp plugin for HTML validation, using the Nu Html Checker (v.Nu)",
   "main": "index.js",
   "repository": {
