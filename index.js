@@ -58,16 +58,16 @@ module.exports = opts => {
     'verbose': false
   };
 
-  const options = Object.assign(defaultOptions, opts);
+  const options = { ...defaultOptions, ...opts };
 
   // Set options
   Object.keys(options).forEach(key => {
-    const val = options[key];
-    if (key === 'format' && val !== 'gnu') {
-      vnuCmd += `--format ${val} `;
+    const value = options[key];
+    if (key === 'format' && value !== 'gnu') {
+      vnuCmd += `--format ${value} `;
     }
 
-    if (val === true) {
+    if (value === true) {
       vnuCmd += `--${key} `;
     }
   });
