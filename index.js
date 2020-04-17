@@ -76,12 +76,12 @@ module.exports = opts => {
     const parsedMessages = JSON.parse(messages).messages;
 
     if (error === null && parsedMessages.length === 0) {
-      logger.log('success', 'Document is valid: ', { path });
-    } else {
-      parsedMessages.map(msg => {
-        return logger.log(msg.type, msg.message, msg);
-      });
+      return logger.log('success', 'Document is valid: ', { path });
     }
+
+    parsedMessages.map(message => {
+      return logger.log(message.type, message.message, message);
+    });
   }
 
   const stream = through.obj((file, enc, cb) => {
