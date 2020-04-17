@@ -27,9 +27,9 @@ const html = () => {
 
 ## Options
 
-The options object supports the same options as the standard The Nu Markup Checker.
+The options object supports the same options as Nu Html Checker.
 
-See also: <https://validator.github.io/validator/#options>
+See also <https://validator.github.io/validator/#options>.
 
 ### errors-only
 
@@ -60,4 +60,4 @@ See also: <https://validator.github.io/validator/#options>
 
 Copyright 2015 Daijiro Wachi
 
-This software is released under the MIT License. See [LICENSE](/LICENSE).
+This software is released under the MIT License. See [LICENSE](https://github.com/validator/gulp-html/blob/master/LICENSE).
