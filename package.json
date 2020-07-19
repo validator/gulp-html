@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "xo": "^0.32.0"
+    "xo": "^0.32.1"
   },
   "files": [
     "index.js"
