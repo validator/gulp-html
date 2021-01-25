@@ -55,7 +55,6 @@
         "error",
         "never"
       ],
-      "unicorn/prefer-optional-catch-binding": "off",
       "unicorn/prevent-abbreviations": "off"
     }
   }

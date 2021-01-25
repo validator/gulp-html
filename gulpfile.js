@@ -34,7 +34,7 @@ const ng = () => {
 
         throw new Error('ng.html isn\'t ng');
       });
-  } catch (_) {}
+  } catch {}
 };
 
 gulp.task('test', gulp.parallel(ok, ng));
