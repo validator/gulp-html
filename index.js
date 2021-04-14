@@ -61,7 +61,7 @@ module.exports = opts => {
   const options = { ...defaultOptions, ...opts };
 
   // Set options
-  Object.keys(options).forEach(key => {
+  for (const key of Object.keys(options)) {
     const value = options[key];
     if (key === 'format' && value !== 'gnu') {
       vnuCmd += `--format ${value} `;
@@ -70,7 +70,7 @@ module.exports = opts => {
     if (value === true) {
       vnuCmd += `--${key} `;
     }
-  });
+  }
 
   function handleError(error, messages, path) {
     const parsedMessages = JSON.parse(messages).messages;
