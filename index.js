@@ -28,15 +28,26 @@ const logger = winston.createLogger({
     new (winston.transports.Console)({
       formatter(options) {
         let levelType = '';
+
         // Return string will be passed to logger.
-        if (options.level === 'error') {
-          levelType = chalk.red('error: ');
-        } else if (options.level === 'info') {
-          levelType = chalk.yellow('warning: ');
-        } else if (options.level === 'success') {
-          return `${chalk.green(options.message) + chalk.underline.bold(options.meta.path)}\n`;
-        } else {
-          return chalk.bold('non-document-error: ') + options.message;
+        switch (options.level) {
+          case 'error': {
+            levelType = chalk.red('error: ');
+            break;
+          }
+
+          case 'info': {
+            levelType = chalk.yellow('warning: ');
+            break;
+          }
+
+          case 'success': {
+            return `${chalk.green(options.message) + chalk.underline.bold(options.meta.path)}\n`;
+          }
+
+          default: {
+            return chalk.bold('non-document-error: ') + options.message;
+          }
         }
 
         return levelType + chalk.underline.bold(options.meta.url) + '\n' +
