@@ -1,6 +1,6 @@
 'use strict';
 
-const { exec } = require('child_process');
+const { execFile } = require('child_process');
 const chalk = require('chalk');
 const PluginError = require('plugin-error');
 const through = require('through2');
@@ -48,7 +48,7 @@ const logger = winston.createLogger({
 });
 
 module.exports = opts => {
-  let vnuCmd = `java -Xss1024k -jar ${vnuJar} `;
+  let vnuArgs = ['-Xss1024k', `-jar ${vnuJar}`];
 
   const defaultOptions = {
     'errors-only': false,
@@ -64,11 +64,11 @@ module.exports = opts => {
   for (const key of Object.keys(options)) {
     const value = options[key];
     if (key === 'format' && value !== 'gnu') {
-      vnuCmd += `--format ${value} `;
+      vnuArgs = [...vnuArgs, `--format ${value}`];
     }
 
     if (value === true) {
-      vnuCmd += `--${key} `;
+      vnuArgs = [...vnuArgs, `--${key}`];
     }
   }
 
@@ -93,7 +93,9 @@ module.exports = opts => {
       return cb(new PluginError('gulp-html', 'Streaming not supported'));
     }
 
-    exec(vnuCmd + file.history, (err, stdout, stderr) => {
+    vnuArgs = [...vnuArgs, file.history];
+
+    execFile('java', vnuArgs, { shell: true }, (err, stdout, stderr) => {
       if (options.format === 'json') {
         return cb(handleError(err, stderr, file.history[0]));
       }
