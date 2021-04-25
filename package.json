@@ -33,13 +33,12 @@
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "xo": "^0.38.2"
+    "xo": "^0.39.1"
   },
   "files": [
     "index.js"
   ],
   "xo": {
-    "esnext": true,
     "space": true,
     "rules": {
       "capitalized-comments": "off",
