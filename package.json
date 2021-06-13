@@ -28,7 +28,7 @@
     "chalk": "^4.1.1",
     "plugin-error": "^1.0.1",
     "through2": "^4.0.2",
-    "vnu-jar": "21.4.9",
+    "vnu-jar": "21.6.11",
     "winston": "^3.3.3"
   },
   "devDependencies": {
