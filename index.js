@@ -16,22 +16,14 @@ const defaultOptions = {
 };
 
 const vnuErrorLevels = {
-  levels: {
-    'success': 0,
-    'error': 1,
-    'info': 2,
-    'non-document-error': 3
-  },
-  colors: {
-    'success': 'green',
-    'error': 'red',
-    'info': 'yellow',
-    'non-document-error': 'black'
-  }
+  'success': 0,
+  'error': 1,
+  'info': 2,
+  'non-document-error': 3
 };
 
 const logger = winston.createLogger({
-  levels: vnuErrorLevels.levels,
+  levels: vnuErrorLevels,
   transports: [
     new (winston.transports.Console)({
       formatter(options) {
