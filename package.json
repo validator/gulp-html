@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/validator/gulp-html",
   "scripts": {
-    "xo": "xo",
-    "test": "npm run xo && gulp test"
+    "lint": "xo",
+    "fix": "xo --fix",
+    "test": "npm run lint && gulp test"
   },
   "engines": {
     "node": ">=10"
@@ -28,12 +29,12 @@
     "chalk": "^4.1.2",
     "plugin-error": "^1.0.1",
     "through2": "^4.0.2",
-    "vnu-jar": "21.9.2",
-    "winston": "^3.3.3"
+    "vnu-jar": "21.10.12",
+    "winston": "^3.5.1"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "xo": "^0.39.1"
+    "xo": "^0.48.0"
   },
   "files": [
     "index.js"
@@ -41,10 +42,19 @@
   "xo": {
     "space": true,
     "rules": {
+      "arrow-body-style": "off",
       "capitalized-comments": "off",
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
       "object-curly-spacing": [
         "error",
         "always"
+      ],
+      "operator-linebreak": [
+        "error",
+        "after"
       ],
       "quote-props": [
         "error",
@@ -54,6 +64,7 @@
         "error",
         "never"
       ],
+      "unicorn/prefer-module": "off",
       "unicorn/prevent-abbreviations": "off"
     }
   }
