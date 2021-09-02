@@ -25,10 +25,10 @@
     "node": ">=10"
   },
   "dependencies": {
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "plugin-error": "^1.0.1",
     "through2": "^4.0.2",
-    "vnu-jar": "21.6.11",
+    "vnu-jar": "21.9.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {
