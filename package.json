@@ -22,7 +22,7 @@
     "test": "npm run xo && gulp test"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "dependencies": {
     "chalk": "^4.1.2",
