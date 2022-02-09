@@ -42,7 +42,6 @@
   "xo": {
     "space": true,
     "rules": {
-      "arrow-body-style": "off",
       "capitalized-comments": "off",
       "comma-dangle": [
         "error",
@@ -64,8 +63,7 @@
         "error",
         "never"
       ],
-      "unicorn/prefer-module": "off",
-      "unicorn/prevent-abbreviations": "off"
+      "unicorn/prefer-module": "off"
     }
   }
 }
