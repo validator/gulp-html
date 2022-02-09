@@ -1,7 +1,7 @@
 'use strict';
 
 const { execFile } = require('child_process');
-const chalk = require('chalk');
+const pc = require('picocolors');
 const PluginError = require('plugin-error');
 const through = require('through2');
 const vnuJar = require('vnu-jar');
@@ -32,26 +32,26 @@ const logger = winston.createLogger({
         // Return string will be passed to logger.
         switch (options.level) {
           case 'error': {
-            levelType = chalk.red('error: ');
+            levelType = pc.red('error: ');
             break;
           }
 
           case 'info': {
-            levelType = chalk.yellow('warning: ');
+            levelType = pc.yellow('warning: ');
             break;
           }
 
           case 'success': {
-            return `${chalk.green(options.message) + chalk.underline.bold(options.meta.path)}\n`;
+            return `${pc.green(options.message) + pc.underline(pc.bold(options.meta.path))}\n`;
           }
 
           default: {
-            return chalk.bold('non-document-error: ') + options.message;
+            return pc.bold('non-document-error: ') + options.message;
           }
         }
 
-        return levelType + chalk.underline.bold(options.meta.url) + '\n' +
-          chalk.bold(options.meta.lastLine + ':' + options.meta.firstColumn) + '\t' + options.message + '\n' +
+        return levelType + pc.underline(pc.bold(options.meta.url)) + '\n' +
+          pc.bold(options.meta.lastLine + ':' + options.meta.firstColumn) + '\t' + options.message + '\n' +
           'source: ' + options.meta.extract + '\n';
       }
     })
