@@ -72,8 +72,7 @@ module.exports = opts => {
   const options = { ...defaultOptions, ...opts };
 
   // Set options
-  for (const key of Object.keys(options)) {
-    const value = options[key];
+  for (const [key, value] of Object.entries(options)) {
     if (key === 'format' && value !== 'gnu') {
       vnuArgs = [...vnuArgs, `--format ${value}`];
     }
@@ -90,9 +89,7 @@ module.exports = opts => {
       return logger.log('success', 'Document is valid: ', { path });
     }
 
-    parsedMessages.map(message => {
-      return logger.log(message.type, message.message, message);
-    });
+    return parsedMessages.map(message => logger.log(message.type, message.message, message));
   }
 
   const stream = through.obj((file, enc, cb) => {
