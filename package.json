@@ -23,7 +23,7 @@
     "test": "npm run lint && gulp test"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "dependencies": {
     "picocolors": "^1.0.0",
