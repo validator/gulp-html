@@ -23,7 +23,7 @@
     "test": "npm run lint && gulp test"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=14.18"
   },
   "dependencies": {
     "picocolors": "^1.0.0",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "xo": "^0.52.4"
+    "xo": "^0.53.1"
   },
   "files": [
     "index.js"

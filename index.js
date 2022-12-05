@@ -1,6 +1,6 @@
 'use strict';
 
-const { execFile } = require('child_process');
+const { execFile } = require('node:child_process');
 const pc = require('picocolors');
 const PluginError = require('plugin-error');
 const through = require('through2');
