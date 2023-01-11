@@ -1,7 +1,7 @@
 # gulp-html
 
-[![npm version](https://img.shields.io/npm/v/gulp-html.svg)](https://www.npmjs.com/package/gulp-html)
-[![Build Status](https://github.com/validator/gulp-html/workflows/Tests/badge.svg)](https://github.com/validator/gulp-html/actions?query=branch%3Amain)
+[![npm version](https://img.shields.io/npm/v/gulp-html?logo=npm&logoColor=fff)](https://www.npmjs.com/package/gulp-html)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/validator/gulp-html/test.yml?branch=main&label=Tests&logo=github)](https://github.com/validator/gulp-html/actions/workflows/test.yml?query=branch%3Amain)
 
 gulp plugin for HTML validation, using the [Nu Html Checker (v.Nu)](https://validator.github.io/validator/)
 
