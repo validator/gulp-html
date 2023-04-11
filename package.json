@@ -27,14 +27,14 @@
   },
   "dependencies": {
     "picocolors": "^1.0.0",
-    "plugin-error": "^2.0.0",
+    "plugin-error": "^2.0.1",
     "through2": "^4.0.2",
-    "vnu-jar": "22.9.29",
+    "vnu-jar": "23.4.11",
     "winston": "^3.8.2"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "xo": "^0.53.1"
+    "xo": "^0.54.0"
   },
   "files": [
     "index.js"
