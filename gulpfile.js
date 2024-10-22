@@ -1,7 +1,7 @@
 'use strict';
 
 const gulp = require('gulp');
-const validator = require('.');
+const validator = require('./index.js');
 
 const ok = () => {
   let status = true;

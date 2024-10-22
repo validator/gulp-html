@@ -26,11 +26,11 @@
     "node": ">=14.18"
   },
   "dependencies": {
-    "picocolors": "^1.0.0",
+    "picocolors": "^1.1.1",
     "plugin-error": "^2.0.1",
     "through2": "^4.0.2",
-    "vnu-jar": "23.4.11",
-    "winston": "^3.11.0"
+    "vnu-jar": "24.10.17",
+    "winston": "^3.15.0"
   },
   "devDependencies": {
     "gulp": "^5.0.0",
